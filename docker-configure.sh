@@ -2,7 +2,7 @@
 
 
 # only run configuration the first time
-RUN_ONCE=ran-docker-configure
+RUN_ONCE="${HOME}/roles_`hostname`"
 if [ -f "${RUN_ONCE}" ]; then
   echo "## Already configured";
   exit;
