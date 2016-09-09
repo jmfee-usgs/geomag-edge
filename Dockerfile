@@ -3,7 +3,7 @@
 FROM debian:jessie
 
 MAINTAINER Jeremy Fee <jmfee@usgs.gov>
-LABEL usgs.geomag-edge.version=0.1.0
+LABEL usgs.geomag-edge.version=0.1.1
 
 
 # update os
