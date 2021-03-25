@@ -21,14 +21,14 @@ EDGEMOM_SETUP=edgemom.setup
 QUERYMOM_SETUP=querymom.setup
 
 # figure out container ip address
-IP=`ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'`
+IP=$(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')
 
 
 ################################################################################
 # write edge.config
 echo "## Writing ${EDGE_CONFIG}"
 cat > "${EDGE_CONFIG}" <<-DONE
-Host=`hostname`
+Host=$(hostname)
 HostIP=$IP
 PublicIP=$IP
 DONE
@@ -72,8 +72,8 @@ echo "## Writing ${EDGEMOM_SETUP}"
 cat > "${EDGEMOM_SETUP}" <<-DONE
 Mom:EdgeMom:-empty >>edgemom
 Echn:EdgeChannelServer:-nodb >>echn
-#Load:MiniSeedServer:-nohydra -noudpchan -p 7965 >>load
-#Replace:MiniSeedServer:-nohydra -noudpchan -p 7974 >>replace
+# Load:MiniSeedServer:-nohydra -noudpchan -p 7965 >>load
+Replace:MiniSeedServer:-nohydra -noudpchan -p 7974 >>replace
 RawInput:RawInputServer:-nohydra -p 7981 -rsend 100 >>rawinput
 DONE
 
@@ -94,6 +94,7 @@ DONE
 
 ################################################################################
 # Have EDGE process config files
+# NOTE: this overwrites the files above and so is commented out
 #
 #echo "## Running NoDBConfig"
 #java -cp ~vdl/bin/EdgeCWB.jar gov.usgs.anss.edgemom.NoDBConfig \
